@@ -4,6 +4,7 @@ const path = require('path');
 const url = require('url');
 
 require('dotenv').config();
+require('electron-reload'(_dirname));
 
 let win = null;
 
@@ -14,11 +15,16 @@ app.on('ready', function() {
 
   // Specify entry point
 if (process.env.PACKAGE === 'true'){
+  // File path for running app
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocal: 'file:',
       slashes: true
     }));
+    // URL path for running app
+    /* 
+    win.loadURL('http://localhost:4200');
+    */
 } else {
   // Show dev tools
   // Remove this line before distributing
